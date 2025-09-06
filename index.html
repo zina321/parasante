@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - ParaSanté</title>
+  <style>
+     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;}
+
+    .accueil {
+  background-image: url("bk.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  background-repeat: no-repeat;
+     display: flex;
+      align-items: center;
+      padding-top: 20%;
+      
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .accueil::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4); /* filtre noir transparent */
+      z-index: 1;
+    }
+
+    .accueil-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .accueil h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+
+    .accueil p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .accueil a {
+      background-color: #1abc9c;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .accueil a:hover {
+      background-color: #159a84;
+    }
+
+    @media (min-width: 600px) {
+    html{
+
+      font-size: 18px;
+    }
+      .accueil h1 {
+        font-size: 2em;
+      }
+
+      .accueil p {
+        font-size: 1em;
+      }
+      
+    }
+  </style>
+</head>
+<body>
+
+  <section class="accueil">
+    <div class="accueil-content">
+      <h1>Bienvenue chez ParaSanté</h1>
+      <p>La beauté naturelle commence ici. Découvrez nos soins et produits bien-être pour toutes les femmes.</p>
+      <a href="produit.html">Voir nos produits</a>
+    </div>
+  </section>
+ 
+
+</body>
+</html>

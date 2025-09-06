@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".vscode"
+		},
+		{
+			"path": "fpdf"
+		},
+		{
+			"path": "images"
+		}
+	],
+	"settings": {}
+}

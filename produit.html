@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParaSanté - Boutique</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- En-tête -->
+  <header>
+    <h1>ParaSanté</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="ll&re.html">Livraison & Retours</a>
+      <a href="#cart-section">Panier</a>
+    </nav>
+  </header>
+
+  <!-- Barre de recherche + panier -->
+  <section class="top-bar">
+    <input type="text" id="search" placeholder="Rechercher un produit..." />
+    <div class="cart" onclick="ouvrirPanier()">Panier (<span id="cart-count">0</span>)</div>
+  </section>
+
+  <!-- Produits -->
+  <section id="products" class="product-list"></section>
+
+  <!-- Panier -->
+  <div id="side-cart" >
+    <div class="side-cart-header">
+      <h2>🛒 Votre panier</h2>
+      <button id="close-cart" aria-label="Fermer le panier">✖</button>
+    </div>
+    <div id="cart-items"></div>
+
+    <!-- Formulaire -->
+    <div id="client-info">
+      <h3>📝 Informations Client</h3>
+      <input type="text" id="nom" placeholder="Nom et prénom" required />
+      <input type="text" id="adresse" placeholder="Adresse de livraison" required />
+      <input type="tel" id="telephone" placeholder="Numéro de téléphone" required />
+      <select id="mode-paiement" required>
+        <option value="">-- Choisir le mode de paiement --</option>
+        <option value="carte">Carte bancaire</option>
+        <option value="cash">Cash à la livraison</option>
+      </select>
+    </div>
+
+    <button class="confirm-btn" onclick="envoyerCommande()">Valider la commande</button>
+    <div id="paypal-button-container"></div>
+    <div id="messageCommande"></div>
+  </div>
+
+  <script src="index.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AY57GdLmAZGwI8dx1IU-8WgGOUWFsLGQu2UJ-xX4NVzW_nuozR9xlpLKJ8kOG4O8OBh5T46kqnQ2-zIo&currency=TND"></script>
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        const total = calculerTotalPanier();
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: total.toFixed(2) }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('✅ Paiement effectué avec succès par ' + details.payer.name.given_name);
+          envoyerCommande();
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+
+</body>
+</html>
